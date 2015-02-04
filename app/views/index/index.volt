@@ -1,3 +1,7 @@
-<h1>Congratulations!</h1>
+{% extends "layouts/main.volt" %}
 
-<p>You're now flying with Phalcon. Great things are about to happen!</p>
+{% block title %}Главная {% endblock %}
+
+{% block content %}
+Супер - мега игра. Регестрируйся и играй уже сейчас!!!
+{% endblock %}

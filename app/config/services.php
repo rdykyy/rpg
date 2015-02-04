@@ -19,6 +19,7 @@ $di = new FactoryDefault();
 $di->set('url', function () use ($config) {
     $url = new UrlResolver();
     $url->setBaseUri($config->application->baseUri);
+    $url->setStaticBaseUri($config->application->staticUri);
 
     return $url;
 }, true);
@@ -39,7 +40,8 @@ $di->set('view', function () use ($config) {
 
             $volt->setOptions(array(
                 'compiledPath' => $config->application->cacheDir,
-                'compiledSeparator' => '_'
+                'compiledSeparator' => '_',
+                'compileAlways' => true
             ));
 
             return $volt;
@@ -78,4 +80,20 @@ $di->set('session', function () {
     $session->start();
 
     return $session;
+});
+
+
+$di->set('request', function () {
+    return new Phalcon\Http\Request();
+});
+
+$di->set('response', function () {
+    return new Phalcon\Http\Response();
+});
+
+/**
+ * Access Control List
+ */
+$di->set('acl', function () {
+    return new Acl();
 });
