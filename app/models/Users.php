@@ -8,6 +8,10 @@ class Users extends \Phalcon\Mvc\Model {
 
     protected $passwordHash;
 
+    public function initialize(){
+        $this->hasMany("id", "Heroes", "userId");
+    }
+
     public function getId() {
         return $this->id;
     }

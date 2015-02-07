@@ -16,6 +16,42 @@
     float: left!important;
 }
 
+.add-hero-wrapper {
+    margin: 0 auto;
+    width: 765px;
+}
+
+.race-img-wrap {
+    display: inline-block;
+    width: 250px;
+}
+
+.input-wrap{
+    margin-bottom: 10px;
+}
+
+ul.class-list li{
+    list-style: none;
+}
+
+.race-img-wrap.selected {
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.race-img-wrap img{
+    width: 100%;
+}
+
+img.hero-class-icon{
+    width: 16px!important;
+}
+
+
+.race-img-wrap .name{
+    text-align: center;
+}
+
 /*Registration*/
 
 .content .registration-panel {

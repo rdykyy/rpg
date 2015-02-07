@@ -1,14 +1,14 @@
 <?php
 
-register_shutdown_function( "fatal_handler" );
-
-function fatal_handler() {
-
-
-    $error = error_get_last();
-
-    var_dump($error);die;
-}
+//register_shutdown_function( "fatal_handler" );
+//
+//function fatal_handler() {
+//
+//
+//    $error = error_get_last();
+//
+//    var_dump($error);die;
+//}
 
 error_reporting(E_ALL);
 
