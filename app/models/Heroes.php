@@ -39,11 +39,11 @@ class Heroes extends \Phalcon\Mvc\Model
      */
     protected $userId;
 
-    public function initialize(){
-        $this->belongsTo("userId" , "Users"  , "id");
-        $this->belongsTo("classId", "Classes", "id");
-        $this->belongsTo("raceId" , "Races"  , "id");
-    }
+    /**
+     *
+     * @var integer
+     */
+    protected $locationId;
 
     /**
      * Method to set the value of field id
@@ -90,7 +90,7 @@ class Heroes extends \Phalcon\Mvc\Model
      * @param integer $raceId
      * @return $this
      */
-    public function setRaceId($raceId)
+    public function setRaceid($raceId)
     {
         $this->raceId = $raceId;
 
@@ -103,7 +103,7 @@ class Heroes extends \Phalcon\Mvc\Model
      * @param integer $classId
      * @return $this
      */
-    public function setClassId($classId)
+    public function setClassid($classId)
     {
         $this->classId = $classId;
 
@@ -116,9 +116,22 @@ class Heroes extends \Phalcon\Mvc\Model
      * @param integer $userId
      * @return $this
      */
-    public function setUserId($userId)
+    public function setUserid($userId)
     {
         $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field locationId
+     *
+     * @param integer $locationId
+     * @return $this
+     */
+    public function setLocationid($locationId)
+    {
+        $this->locationId = $locationId;
 
         return $this;
     }
@@ -158,7 +171,7 @@ class Heroes extends \Phalcon\Mvc\Model
      *
      * @return integer
      */
-    public function getRaceId()
+    public function getRaceid()
     {
         return $this->raceId;
     }
@@ -168,7 +181,7 @@ class Heroes extends \Phalcon\Mvc\Model
      *
      * @return integer
      */
-    public function getClassId()
+    public function getClassid()
     {
         return $this->classId;
     }
@@ -178,9 +191,19 @@ class Heroes extends \Phalcon\Mvc\Model
      *
      * @return integer
      */
-    public function getUserId()
+    public function getUserid()
     {
         return $this->userId;
+    }
+
+    /**
+     * Returns the value of field locationId
+     *
+     * @return integer
+     */
+    public function getLocationid()
+    {
+        return $this->locationId;
     }
 
     /**
@@ -194,7 +217,8 @@ class Heroes extends \Phalcon\Mvc\Model
             'level' => 'level', 
             'raceId' => 'raceId', 
             'classId' => 'classId', 
-            'userId' => 'userId'
+            'userId' => 'userId', 
+            'locationId' => 'locationId'
         );
     }
 

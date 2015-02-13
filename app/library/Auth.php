@@ -26,7 +26,8 @@ class Auth extends Component {
 
         $this->session->set('auth-identity', array(
             'id' => $user->getId(),
-            'name' => $user->getEmail()
+            'name' => $user->getEmail(),
+            'locationId' => Heroes::findFirst($user->getActiveheroid())->getLocationid()
         ));
         return true;
     }
