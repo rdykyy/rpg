@@ -29,6 +29,10 @@ class Users extends \Phalcon\Mvc\Model
      */
     protected $activeHeroId;
 
+    public function initialize(){
+        $this->hasMany("id", "Heroes", "userId");
+    }
+
     /**
      * Method to set the value of field id
      *

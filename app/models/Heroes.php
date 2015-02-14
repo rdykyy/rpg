@@ -45,6 +45,12 @@ class Heroes extends \Phalcon\Mvc\Model
      */
     protected $locationId;
 
+    public function initialize(){
+        $this->belongsTo("userId" , "Users"  , "id");
+        $this->belongsTo("classId", "Classes", "id");
+        $this->belongsTo("raceId" , "Races"  , "id");
+    }
+
     /**
      * Method to set the value of field id
      *

@@ -20,9 +20,14 @@ class HeroController extends ControllerBase {
             $model->setRaceId($this->request->getPost('race'));
             $model->setName($this->request->getPost('name'));
             $model->setUserId($auth['id']);
+            $model->setLevel(1);
             if ($model->save()) {
                 echo true;
                 die;
+            } else {
+                foreach ($model->getMessages() as $message) {
+                    echo $message, "\n";
+                }
             }
         }
         echo false;die;

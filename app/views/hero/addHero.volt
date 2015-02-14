@@ -67,6 +67,7 @@
                 url: "/hero/createHero",
                 data: obj,
                 complete : function(data) {
+                    console.log(data);
                     var resp = eval(data.responseText);
                     if (resp) {
                         window.location = '/hero/chooseHero'
