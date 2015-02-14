@@ -67,7 +67,9 @@ class Users extends \Phalcon\Mvc\Model
      */
     public function setPasswordhash($passwordHash)
     {
-        $this->passwordHash = $passwordHash;
+        $this->passwordHash = $this->getDI()
+            ->getSecurity()
+            ->hash($passwordHash);
 
         return $this;
     }

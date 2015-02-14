@@ -19,6 +19,7 @@ class Auth extends Component {
         if ($user == false) {
             return false;
         }
+
         // Check the password
         if (!$this->security->checkHash($credentials['password'], $user->getPasswordHash())) {
             return false;

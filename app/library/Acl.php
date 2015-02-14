@@ -22,23 +22,28 @@ class Acl extends Component {
     public function checkAccess($controller, $action) {
         $conf = $this->_getConfig();
         $auth = Auth::getInstance()->getIdentity();
+
         if (!$auth) {
             if (isset($conf['public'][$controller]) and in_array($action, $conf['public'][$controller])) {
                 return true;
             } else {
-                return $this->response->redirect('index/index');
+                $this->response->redirect('index/index');
+                return false;
+
             }
         } else if (isset($auth['id']) and !isset($auth['heroId'])) {
             if (isset($conf['user'][$controller]) and in_array($action, $conf['user'][$controller])) {
                 return true;
             }  else {
-                return $this->response->redirect('hero/chooseHero');
+                $this->response->redirect('hero/chooseHero');
+                return false;
             }
         } else {
             if (!isset($conf['user'][$controller]) and !isset($conf['public'][$controller])) {
                 return true;
             } else {
-                return $this->response->redirect('game/index');
+                $this->response->redirect('game/index');
+                return false;
             }
         }
     }
