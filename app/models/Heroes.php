@@ -156,7 +156,7 @@ class Heroes extends \Phalcon\Mvc\Model
      */
     public function setXp($xp)
     {
-        $this->$xp = $xp;
+        $this->xp = $xp;
 
         return $this;
     }
