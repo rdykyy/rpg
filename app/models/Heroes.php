@@ -45,6 +45,12 @@ class Heroes extends \Phalcon\Mvc\Model
      */
     protected $locationId;
 
+    /**
+     *
+     * @var integer
+     */
+    protected $xp;
+
     public function initialize(){
         $this->belongsTo("userId" , "Users"  , "id");
         $this->belongsTo("classId", "Classes", "id");
