@@ -30,9 +30,7 @@ class MapsController extends ControllerBase
 
     public function landMapAction($landId = null)
     {
-        echo "Hello";
-        //print_r($this->session->get("auth-identity"));
-        die();
+
         if (is_null($landId))
         {
             $identity = $this->session->get("auth-identity");
