@@ -2,7 +2,7 @@
 
 class Races extends \Phalcon\Mvc\Model {
 
-    protected $id;
+    protected $raceId;
 
     protected $name;
 
@@ -11,11 +11,11 @@ class Races extends \Phalcon\Mvc\Model {
     protected $description;
 
     public function initialize(){
-        $this->hasMany("id", "Heroes", "raceId");
+        $this->hasMany("raceId", "Heroes", "raceId");
     }
 
-    public function getId() {
-        return $this->id;
+    public function getRaceId() {
+        return $this->raceId;
     }
 
     public function getName() {

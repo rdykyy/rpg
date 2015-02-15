@@ -13,7 +13,7 @@ class RegistrationController extends ControllerBase {
             $model->setPasswordHash($this->request->getPost('password'));
             try {
                 if ($model->save()) {
-                    if (Auth::getInstance()->authUserById($model->getId())) {
+                    if (Auth::getInstance()->authUserById($model->getUserId())) {
                         return $this->response->redirect('hero/chooseHero');
                     }
                 }

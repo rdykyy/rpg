@@ -7,7 +7,7 @@ class Heroes extends \Phalcon\Mvc\Model
      *
      * @var integer
      */
-    protected $id;
+    protected $heroId;
 
     /**
      *
@@ -52,9 +52,9 @@ class Heroes extends \Phalcon\Mvc\Model
     protected $xp;
 
     public function initialize(){
-        $this->belongsTo("userId" , "Users"  , "id");
-        $this->belongsTo("classId", "Classes", "id");
-        $this->belongsTo("raceId" , "Races"  , "id");
+        $this->belongsTo("userId" , "Users"  , "userId");
+        $this->belongsTo("classId", "Classes", "classId");
+        $this->belongsTo("raceId" , "Races"  , "raceId");
     }
 
     /**
@@ -63,9 +63,9 @@ class Heroes extends \Phalcon\Mvc\Model
      * @param integer $id
      * @return $this
      */
-    public function setId($id)
+    public function setHeroId($id)
     {
-        $this->id = $id;
+        $this->heroId = $id;
 
         return $this;
     }
@@ -166,9 +166,9 @@ class Heroes extends \Phalcon\Mvc\Model
      *
      * @return integer
      */
-    public function getId()
+    public function getHeroId()
     {
-        return $this->id;
+        return $this->heroId;
     }
 
     /**
@@ -247,7 +247,7 @@ class Heroes extends \Phalcon\Mvc\Model
     public function columnMap()
     {
         return array(
-            'id' => 'id', 
+            'heroId' => 'heroId',
             'name' => 'name', 
             'level' => 'level', 
             'raceId' => 'raceId', 

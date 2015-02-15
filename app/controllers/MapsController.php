@@ -37,7 +37,6 @@ class MapsController extends ControllerBase
             $landId = $identity["locationId"];
         }
 
-        $this->session->destroy();
         $locations = $this->getLocations($landId)->toArray();
         $this->view->setVar("landName", lands::findFirst("landId = {$landId}")->getName());
         $this->view->setVar("locationsList", $locations);

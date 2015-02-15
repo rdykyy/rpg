@@ -13,11 +13,11 @@ class GameController extends ControllerBase {
                         'id' => $heroId
                     ]);
                     if ($hero) {
-                        Auth::getInstance()->addHero($hero);
                         if (!$hero->getLocationid()) {
                             $hero->setLocationid(1);
                             $hero->save();
                         }
+                        Auth::getInstance()->addHero($hero);
                         $this->response->redirect('maps/landMap/' . $hero->getLocationid());
                     }
                 }

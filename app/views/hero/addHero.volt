@@ -18,7 +18,7 @@
         <div class="race-img-wrap">
             <img src="{{static_url('img/races/' ~ race.getImage())}}" alt="div"/>
             <p class="name">
-                <input name="race" type="radio" id="race-{{loop.index}}" value="{{race.getId()}}"/> <br/>
+                <input name="race" type="radio" id="race-{{loop.index}}" value="{{race.getRaceId()}}"/> <br/>
                 {{race.getName()}}
             </p>
         </div>
@@ -32,7 +32,7 @@
     {% for class in classes %}
         <li>
             <label for="class-{{loop.index}}">
-                <input name="class" type="radio" id="class-{{loop.index}}" value="{{class.getId()}}"/>
+                <input name="class" type="radio" id="class-{{loop.index}}" value="{{class.getClassId()}}"/>
                 <img src="{{static_url('img/classes/' ~ class.getIcon())}}" alt="div"/>
                 {{class.getName()}}
             </label>

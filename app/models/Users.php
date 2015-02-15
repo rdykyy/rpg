@@ -9,7 +9,7 @@ class Users extends \Phalcon\Mvc\Model
      *
      * @var integer
      */
-    protected $id;
+    protected $userId;
 
     /**
      *
@@ -30,7 +30,7 @@ class Users extends \Phalcon\Mvc\Model
     protected $activeHeroId;
 
     public function initialize(){
-        $this->hasMany("id", "Heroes", "userId");
+        $this->hasMany("userId", "Heroes", "userId");
     }
 
     /**
@@ -39,9 +39,9 @@ class Users extends \Phalcon\Mvc\Model
      * @param integer $id
      * @return $this
      */
-    public function setId($id)
+    public function setUserId($id)
     {
-        $this->id = $id;
+        $this->userId = $id;
 
         return $this;
     }
@@ -92,9 +92,9 @@ class Users extends \Phalcon\Mvc\Model
      *
      * @return integer
      */
-    public function getId()
+    public function getUserId()
     {
-        return $this->id;
+        return $this->userId;
     }
 
     /**
@@ -152,7 +152,7 @@ class Users extends \Phalcon\Mvc\Model
     public function columnMap()
     {
         return array(
-            'id' => 'id', 
+            'userId' => 'userId',
             'email' => 'email', 
             'passwordHash' => 'passwordHash', 
             'activeHeroId' => 'activeHeroId'

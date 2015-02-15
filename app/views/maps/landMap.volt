@@ -1,3 +1,8 @@
+{% extends "layouts/main.volt" %}
+
+{% block title %}Выбор героя {% endblock %}
+
+{% block content %}
 <h1>{{landName}}</h1>
 
 <ul>
@@ -8,3 +13,4 @@
 {%endfor%}
 </ul>
 
+{% endblock %}

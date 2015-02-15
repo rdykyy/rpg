@@ -26,7 +26,7 @@ class Auth extends Component {
         }
 
         $this->session->set('auth-identity', array(
-            'id' => $user->getId(),
+            'id' => $user->getUserId(),
             'name' => $user->getEmail()
         ));
         return true;
@@ -52,8 +52,9 @@ class Auth extends Component {
      */
     public function addHero($hero) {
         $auth = $this->session->get('auth-identity');
-        $auth['heroId'] = $hero->getId();
+        $auth['heroId'] = $hero->getUserId();
         $auth['heroName'] = $hero->getName();
+        $auth['locationId'] = $hero->getLocationid();
         $this->session->set('auth-identity', $auth);
     }
 
@@ -71,13 +72,13 @@ class Auth extends Component {
     }
 
     public function authUserById($id) {
-        $user = Users::findFirstById($id);
+        $user = Users::findFirstByUserId($id);
 
         if ($user == false) {
             return false;
         }
         $this->session->set('auth-identity', array(
-            'id' => $user->getId(),
+            'id' => $user->getUserId(),
             'name' => $user->getEmail()
         ));
         return true;
@@ -87,7 +88,7 @@ class Auth extends Component {
     public function getUser() {
         $identity = $this->session->get('auth-identity');
         if (isset($identity['id'])) {
-            $user = Users::findFirstById($identity['id']);
+            $user = Users::findFirstByUserId($identity['id']);
             if ($user == false) {
                 return false;
             }
