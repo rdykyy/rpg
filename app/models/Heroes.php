@@ -143,6 +143,19 @@ class Heroes extends \Phalcon\Mvc\Model
     }
 
     /**
+     * Method to set the value of field xp
+     *
+     * @param integer $xp
+     * @return $this
+     */
+    public function setXp($xp)
+    {
+        $this->$exp = $xp;
+
+        return $this;
+    }
+
+    /**
      * Returns the value of field id
      *
      * @return integer
@@ -213,6 +226,16 @@ class Heroes extends \Phalcon\Mvc\Model
     }
 
     /**
+     * Returns the value of field xp
+     *
+     * @return integer
+     */
+    public function getXp()
+    {
+        return $this->xp;
+    }
+
+    /**
      * Independent Column Mapping.
      */
     public function columnMap()
@@ -224,7 +247,8 @@ class Heroes extends \Phalcon\Mvc\Model
             'raceId' => 'raceId', 
             'classId' => 'classId', 
             'userId' => 'userId', 
-            'locationId' => 'locationId'
+            'locationId' => 'locationId',
+            'xp' => 'xp'
         );
     }
 
