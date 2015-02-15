@@ -20,6 +20,7 @@
             {% endif %}
         </div>
     </div>
+
     {% block content %}{% endblock %}
 </div>
 </body>

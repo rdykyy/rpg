@@ -36,6 +36,7 @@ class HeroController extends ControllerBase {
 
     public function profileAction($heroId)
     {
+        echo $heroId;
         if ($heroId == null) {
             $auth = $this->session->get('auth-identity');
             $this->view->setVar("heroName", $auth['name']);

@@ -12,7 +12,7 @@ class Acl extends Component {
                 'authorization' => ['index', 'login']
             ],
             'user' => [
-                'hero' => ['chooseHero', 'addHero', 'createHero', 'startGame'],
+                'hero' => ['chooseHero', 'addHero', 'createHero', 'startGame', 'profile'],
                 'maps' => ['landMap', 'location'],
                 'authorization' => ['logout'],
                 'game' => ['startGame']
