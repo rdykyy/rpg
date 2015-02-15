@@ -53,7 +53,16 @@ class Auth extends Component {
     public function addHero($hero) {
         $auth = $this->session->get('auth-identity');
         $auth['heroId'] = $hero->getId();
+        $auth['heroName'] = $hero->getName();
         $this->session->set('auth-identity', $auth);
+    }
+
+    public function getHeroId() {
+        return $this->session->get('auth-identity')['heroId'];
+    }
+
+    public function getHeroName() {
+        return $this->session->get('auth-identity')['heroName'];
     }
 
 

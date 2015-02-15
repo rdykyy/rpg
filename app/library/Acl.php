@@ -25,6 +25,7 @@ class Acl extends Component {
         $conf = $this->_getConfig();
         $auth = Auth::getInstance()->getIdentity();
 
+
         if (!$auth) {
             if (isset($conf['public'][$controller]) and in_array($action, $conf['public'][$controller])) {
                 return true;
