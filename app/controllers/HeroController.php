@@ -21,6 +21,7 @@ class HeroController extends ControllerBase {
             $model->setName($this->request->getPost('name'));
             $model->setUserId($auth['id']);
             $model->setLevel(1);
+            $model->setXp(0);
             if ($model->save()) {
                 echo true;
                 die;
