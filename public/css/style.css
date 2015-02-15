@@ -16,6 +16,10 @@
     float: left!important;
 }
 
+.clr {
+    clear: both;
+}
+
 .add-hero-wrapper {
     margin: 0 auto;
     width: 765px;

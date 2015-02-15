@@ -27,8 +27,7 @@ class Auth extends Component {
 
         $this->session->set('auth-identity', array(
             'id' => $user->getId(),
-            'name' => $user->getEmail(),
-            'locationId' => Heroes::findFirst($user->getActiveheroid())->getLocationid()
+            'name' => $user->getEmail()
         ));
         return true;
     }
@@ -46,6 +45,15 @@ class Auth extends Component {
     public function hasSelectedHero() {
         $auth = $this->session->get('auth-identity');
         return isset($auth['heroId']);
+    }
+
+    /**
+     * @param Heroes $hero
+     */
+    public function addHero($hero) {
+        $auth = $this->session->get('auth-identity');
+        $auth['heroId'] = $hero->getId();
+        $this->session->set('auth-identity', $auth);
     }
 
 

@@ -14,7 +14,8 @@ class Acl extends Component {
             'user' => [
                 'hero' => ['chooseHero', 'addHero', 'createHero', 'startGame'],
                 'maps' => ['landMap', 'location'],
-                'authorization' => ['logout']
+                'authorization' => ['logout'],
+                'game' => ['startGame']
 
             ]
         ];
@@ -40,12 +41,16 @@ class Acl extends Component {
                 return false;
             }
         } else {
-            if (!isset($conf['user'][$controller]) and !isset($conf['public'][$controller])) {
-                return true;
-            } else {
-                $this->response->redirect('game/index');
-                return false;
-            }
+            return true;
+//            if (
+//                ($controller == 'authorization' and $action == 'logout') or
+//                !isset($conf['user'][$controller]) and !isset($conf['public'][$controller])
+//            ) {
+//                return true;
+//            } else {
+//                $this->response->redirect('game/index');
+//                return false;
+//            }
         }
     }
 
