@@ -24,6 +24,12 @@ $di->set('url', function () use ($config) {
     return $url;
 }, true);
 
+$di->set('gameConfig', function() {
+    $gameConfig = include __DIR__ . "/gameConfig.php";
+    return $gameConfig;
+
+});
+
 /**
  * Setting up the view component
  */
@@ -52,10 +58,15 @@ $di->set('view', function () use ($config) {
     return $view;
 }, true);
 
+$di->set('profiler', function(){
+    return new \Phalcon\Db\Profiler();
+}, true);
+
 /**
  * Database connection is created based in the parameters defined in the configuration file
  */
 $di->set('db', function () use ($config) {
+
     return new DbAdapter(array(
         'host' => $config->database->host,
         'username' => $config->database->username,

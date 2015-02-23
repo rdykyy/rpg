@@ -51,10 +51,15 @@ class Heroes extends \Phalcon\Mvc\Model
      */
     protected $xp;
 
-    public function initialize(){
-        $this->belongsTo("userId" , "Users"  , "userId");
-        $this->belongsTo("classId", "Classes", "classId");
-        $this->belongsTo("raceId" , "Races"  , "raceId");
+    public $races;
+
+    public $classes;
+
+    public function onConstruct()
+    {
+        $conf =$this->getDI()->get('gameConfig');
+        $this->races = $conf->races->toArray();
+        $this->classes = $conf->classes->toArray();
     }
 
     /**

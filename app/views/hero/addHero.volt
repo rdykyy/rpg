@@ -12,14 +12,14 @@
     </div>
 
     <p>Виберите расу</p>
-    {% for race in races %}
+    {% for id, race in races %}
 
     <label for="race-{{loop.index}}">
         <div class="race-img-wrap">
-            <img src="{{static_url('img/races/' ~ race.getImage())}}" alt="div"/>
+            <img src="{{static_url('img/races/' ~ race['image'])}}" alt="div"/>
             <p class="name">
-                <input name="race" type="radio" id="race-{{loop.index}}" value="{{race.getRaceId()}}"/> <br/>
-                {{race.getName()}}
+                <input name="race" type="radio" id="race-{{loop.index}}" value="{{id}}"/> <br/>
+                {{race['name']}}
             </p>
         </div>
     </label>
@@ -29,12 +29,12 @@
 
     <p>Виберите класс</p>
     <ul class="class-list">
-    {% for class in classes %}
+    {% for id, class in classes %}
         <li>
             <label for="class-{{loop.index}}">
-                <input name="class" type="radio" id="class-{{loop.index}}" value="{{class.getClassId()}}"/>
-                <img src="{{static_url('img/classes/' ~ class.getIcon())}}" alt="div"/>
-                {{class.getName()}}
+                <input name="class" type="radio" id="class-{{loop.index}}" value="{{id}}"/>
+                <img src="{{static_url('img/classes/' ~ class['icon'])}}" alt="div"/>
+                {{class['name']}}
             </label>
         </li>
 

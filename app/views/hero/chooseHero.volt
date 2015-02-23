@@ -14,12 +14,13 @@
 
         <label for="hero-{{loop.index}}">
             <div class="race-img-wrap">
-                <img src="{{static_url('img/races/' ~ hero.races.getImage())}}" alt="div"/>
+                <img src="{{static_url('img/races/' ~ hero.races[hero.getRaceid()]['image'])}}" alt="div"/>
 
                 <p class="name">
-                    <input name="hero" type="radio" id="hero-{{loop.index}}" value="{{hero.getHeroId()}}"/> <br/>
-                    <img class="hero-class-icon" src="{{static_url('img/classes/' ~ hero.classes.getIcon())}}"
+                    <img class="hero-class-icon" src="{{static_url('img/classes/' ~ hero.classes[hero.getClassid()]['icon'])}}"
                          alt="div"/>{{hero.getName()}}
+                    <input name="hero" type="radio" id="hero-{{loop.index}}" value="{{hero.getHeroId()}}"/> <br/>
+
                 </p>
             </div>
         </label>

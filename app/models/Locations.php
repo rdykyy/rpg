@@ -27,12 +27,18 @@ class Locations extends \Phalcon\Mvc\Model
      */
     protected $description;
 
+    public function initialize(){
+        $this->hasMany("locationId", "Locations", "locationId");
+    }
+
+
     /**
      * Method to set the value of field locationId
      *
      * @param integer $locationId
      * @return $this
      */
+
     public function setLocationid($locationId)
     {
         $this->locationId = $locationId;

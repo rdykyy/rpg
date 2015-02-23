@@ -16,8 +16,9 @@
         <div class="left">
             <a href="{{url('hero/profile')}}">Профиль</a>
             <a href="{{url('hero/inventory')}}">Рюкзак</a>
+            <a href="{{url('hero/skills')}}">Умения</a>
             <a href="{{url('map')}}">Карта</a>
-            <a href="{{url('map/landMap/' ~ user['locationId'])}}">Локация</a>
+            <!--<a href="{{url('map/landMap/' ~ user['locationId'])}}">Локация</a>-->
         </div>
         {% endif %}
         <div class="right">

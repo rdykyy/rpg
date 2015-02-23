@@ -1,5 +1,5 @@
 <?php
-
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 class HeroController extends ControllerBase {
 
     public function chooseHeroAction() {
@@ -8,8 +8,11 @@ class HeroController extends ControllerBase {
     }
 
     public function addHeroAction() {
-        $this->view->races = Races::find();
-        $this->view->classes = Classes::find();
+        $hero = new Heroes();
+        //var_dump()
+        $this->view->races = $this->gameConfig->races->toArray();
+        //var_dump()
+        $this->view->classes = $this->gameConfig->classes->toArray();
     }
 
     public function createHeroAction() {
@@ -34,13 +37,23 @@ class HeroController extends ControllerBase {
         echo false;die;
     }
 
-    public function profileAction($heroId)
+    public function profileAction($heroId = null)
     {
-        echo $heroId;
-        if ($heroId == null) {
-            $auth = $this->session->get('auth-identity');
-            $this->view->setVar("heroName", $auth['name']);
-        }
+        $heroId = (is_null($heroId))?Auth::getInstance()->getHeroId(): $heroId;
+
+        $hero = Heroes::findFirst(['heroId' =>$heroId]);
+        $skills = (new Skills())->getSkillsByHeroId($heroId);
+        $this->view->setVar("skills", $skills);
+        $this->view->setVar("hero", $hero);
+    }
+
+    public function skillsAction($heroId)
+    {
+        if ($heroId == null)
+            $heroId = Auth::getInstance()->getHeroId();
+
+        $heroName = Auth::getInstance()->getHeroName();//Heroes::findFirst("heroId = '$heroId'");
+        $this->view->setVar("heroName", $heroName);
     }
 
 }

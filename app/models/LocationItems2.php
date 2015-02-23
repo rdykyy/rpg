@@ -1,6 +1,6 @@
 <?php
 
-class Locationitems extends \Phalcon\Mvc\Model
+class LocationItems extends \Phalcon\Mvc\Model
 {
 
     /**
