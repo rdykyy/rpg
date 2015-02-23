@@ -42,9 +42,23 @@ class HeroController extends ControllerBase {
         $heroId = (is_null($heroId))?Auth::getInstance()->getHeroId(): $heroId;
 
         $hero = Heroes::findFirst(['heroId' =>$heroId]);
-        $skills = (new Skills())->getSkillsByHeroId($heroId);
-        $this->view->setVar("skills", $skills);
-        $this->view->setVar("hero", $hero);
+        $hero->skills;
+        //$skills = (new Skills())->getSkillsByHeroId($heroId);
+        //$this->view->setVar("skills", $skills);
+        //$this->view->setVar("hero", $hero);
+
+        //Get the generated profiles from the profiler
+        $profiles = $this->di->get('profiler')->getProfiles();
+
+
+        foreach ($profiles as $profile) {
+            echo "SQL Statement: ", $profile->getSQLStatement(), "<br />";
+            echo "Start Time: ", $profile->getInitialTime(), "<br />";
+            echo "Final Time: ", $profile->getFinalTime(), "<br />";
+            echo "Total Elapsed Time: ", $profile->getTotalElapsedSeconds(), "<br />";
+        }
+
+        die;
     }
 
     public function skillsAction($heroId)

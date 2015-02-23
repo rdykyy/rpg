@@ -65,16 +65,41 @@ $di->set('profiler', function(){
 /**
  * Database connection is created based in the parameters defined in the configuration file
  */
-$di->set('db', function () use ($config) {
+$di->set('db', function () use ($config, $di) {
 
-    return new DbAdapter(array(
+    $eventsManager = new \Phalcon\Events\Manager();
+
+    //Get a shared instance of the DbProfiler
+    $profiler = $di->getProfiler();
+
+    //Listen all the database events
+    $eventsManager->attach('db', function($event, $connection) use ($profiler) {
+        if ($event->getType() == 'beforeQuery') {
+            $profiler->startProfile($connection->getSQLStatement());
+        }
+        if ($event->getType() == 'afterQuery') {
+            $profiler->stopProfile();
+        }
+    });
+
+    $connection = new DbAdapter(array(
         'host' => $config->database->host,
         'username' => $config->database->username,
         'password' => $config->database->password,
         'dbname' => $config->database->dbname,
         "charset" => $config->database->charset
     ));
+
+    //Assign the eventsManager to the db adapter instance
+    $connection->setEventsManager($eventsManager);
+
+    return $connection;
 });
+
+$di->set('modelsMetadata', function () {
+        $metaData = new \Phalcon\Mvc\Model\MetaData\Files(array("lifetime" => 86400, "metaDataDir" => _SYSROOT . "/caches/metadata/"));
+        return $metaData;
+    });
 
 /**
  * If the configuration specify the use of metadata adapter use it or use memory otherwise
