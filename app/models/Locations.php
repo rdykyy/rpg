@@ -1,5 +1,7 @@
 <?php
 
+use Phalcon\Mvc\Model\MetaData;
+
 class Locations extends \Phalcon\Mvc\Model
 {
 
@@ -135,7 +137,36 @@ class Locations extends \Phalcon\Mvc\Model
             'locationId' => 'locationId', 
             'landId' => 'landId', 
             'name' => 'name', 
-            'description' => 'description'
+            'description' => 'description',
+            'x' => 'x',
+            'y' => 'y',
+            'icon' => 'icon'
+        );
+    }
+
+    public function metaData()
+    {
+        return array(
+
+            //Every column in the mapped table
+            MetaData::MODELS_ATTRIBUTES => array(
+                'locationId', 'landId', 'name', 'description', 'x', 'y', 'icon'
+            ),
+
+            //Every column part of the primary key
+            MetaData::MODELS_PRIMARY_KEY => array(
+                'locationId'
+            ),
+
+            //Every column that isn't part of the primary key
+            MetaData::MODELS_NON_PRIMARY_KEY => array(
+                'locationId', 'landId', 'name', 'description', 'x', 'y', 'icon'
+            ),
+
+            //The identity column, use boolean false if the model doesn't have
+            //an identity column
+            MetaData::MODELS_IDENTITY_COLUMN => 'locationId',
+
         );
     }
 

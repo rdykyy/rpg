@@ -18,7 +18,7 @@ class GameController extends ControllerBase {
                             $hero->save();
                         }
                         Auth::getInstance()->addHero($hero);
-                        $this->response->redirect('maps/landMap/' . $hero->getLocationid());
+                        $this->response->redirect('map/location/' . $hero->getLocationid());
                     }
                 }
             }

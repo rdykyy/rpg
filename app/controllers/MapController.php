@@ -6,7 +6,7 @@
  * Time: 19:31
  */
 
-class MapsController extends ControllerBase
+class MapController extends ControllerBase
 {
     public function getLocationItems($locationId)
     {
@@ -23,27 +23,19 @@ class MapsController extends ControllerBase
         return lands::find("worldId = {$worldId}");
     }
 
-    /*public function landMapAction()
+
+    public function indexAction()
     {
-        echo "hello";
-    }*/
-
-    public function landMapAction($landId = null)
-    {
-
-        if (is_null($landId))
-        {
-            $identity = $this->session->get("auth-identity");
-            $landId = $identity["locationId"];
-        }
-
-        $locations = $this->getLocations($landId)->toArray();
-        $this->view->setVar("landName", lands::findFirst("landId = {$landId}")->getName());
+        $locations = $this->getLocations(1)->toArray();
+        //var_dump($landId);die;
+        $this->view->setVar("landName", lands::findFirst("landId=1")->getName());
         $this->view->setVar("locationsList", $locations);
     }
 
     public function  locationAction($locationId)
     {
+        $heroes = Heroes::find("locationId=" . $locationId . " AND heroId!=" . Auth::getInstance()->getHeroId() . ' limit 0, 50');
+        $this->view->heroes = $heroes;
         $this->view->setVar("locationName", locations::findFirst("locationId = {$locationId}")->getName());
         $locationItems = $this->getLocationItems($locationId)->toArray();
         $this->view->setVar("locationItemsList", $locationItems);
