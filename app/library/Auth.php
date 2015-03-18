@@ -52,9 +52,10 @@ class Auth extends Component {
      */
     public function addHero($hero) {
         $auth = $this->session->get('auth-identity');
-        $auth['heroId'] = $hero->getUserId();
+        $auth['heroId'] = $hero->getHeroId();
         $auth['heroName'] = $hero->getName();
         $auth['locationId'] = $hero->getLocationid();
+
         $this->session->set('auth-identity', $auth);
     }
 

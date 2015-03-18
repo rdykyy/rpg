@@ -41,11 +41,21 @@ class HeroController extends ControllerBase {
     {
         $heroId = (is_null($heroId))?Auth::getInstance()->getHeroId(): $heroId;
 
-        $hero = Heroes::findFirst(['heroId' =>$heroId]);
-        $hero->skills;
+        $hero = Heroes::findFirst("heroId=$heroId");
+        $this->view->setVar("hero", $hero);
+        $skillsModel = new Skills();
+        $skills= $skillsModel->getSkillsByHeroId($heroId);
+
+
+        //foreach ($skills as $skill) {echo 1;}
+
+          //  die;
+        $this->view->setVar("skills", $skills);
+
+        /*$hero->skills;
         //$skills = (new Skills())->getSkillsByHeroId($heroId);
         //$this->view->setVar("skills", $skills);
-        //$this->view->setVar("hero", $hero);
+
 
         //Get the generated profiles from the profiler
         $profiles = $this->di->get('profiler')->getProfiles();
@@ -58,7 +68,7 @@ class HeroController extends ControllerBase {
             echo "Total Elapsed Time: ", $profile->getTotalElapsedSeconds(), "<br />";
         }
 
-        die;
+        die;*/
     }
 
     public function skillsAction($heroId)

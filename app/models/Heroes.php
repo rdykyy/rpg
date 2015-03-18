@@ -127,8 +127,7 @@ class Heroes extends \Phalcon\Mvc\Model
             "heroId",
             "skillId",
             "Skills",
-            "skillId",
-            array('alias' => 'skills')
+            "skillId"
         );
     }
 
