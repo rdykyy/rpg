@@ -34,7 +34,7 @@
     margin-bottom: 10px;
 }
 
-ul.class-list li{
+ul.non-styled li{
     list-style: none;
 }
 
@@ -60,5 +60,28 @@ img.hero-class-icon{
 
 .content .registration-panel {
     width: 300px;
+    margin: 0 auto;
+}
+
+.hero-list {
+    width: 200px;
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.locations-container {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    margin: 0 auto;
+    border: 2px grey solid;
+}
+
+.locations-container .location{
+    position: absolute;
+}
+
+.locations-container .location img{
+    display: block;
     margin: 0 auto;
 }
