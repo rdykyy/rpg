@@ -10,7 +10,7 @@ class MapController extends ControllerBase
 {
     public function getLocationItems($locationId)
     {
-        return LocationItems::find("locationId = {$locationId}");
+        return AttackableLocationItems::find("locationId = {$locationId}");
     }
 
     public function getLocations($landId)

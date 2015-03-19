@@ -1,6 +1,6 @@
 <?php
 
-class LocationItems extends \Phalcon\Mvc\Model
+class AttackableLocationItems extends \Phalcon\Mvc\Model
 {
 
     /**
@@ -96,7 +96,7 @@ class LocationItems extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSource('locationItems');
+        $this->setSource('attackableLocationItems');
     }
 
     /**

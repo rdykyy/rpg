@@ -52,6 +52,19 @@ class Heroes extends \Phalcon\Mvc\Model
      */
     protected $xp;
 
+    protected $maxHp;
+
+    protected $currentHp;
+
+    protected $maxMp;
+
+    protected $currentMp;
+
+    protected $attack;
+
+    protected $armor;
+
+
     public $races;
 
     public $classes;
@@ -62,7 +75,8 @@ class Heroes extends \Phalcon\Mvc\Model
 
             //Every column in the mapped table
             MetaData::MODELS_ATTRIBUTES => array(
-                'heroId', 'name', 'level', 'raceId', 'classId', 'userId', 'locationId', 'xp'
+                'heroId', 'name', 'level', 'raceId', 'classId', 'userId', 'locationId', 'xp',
+                'maxHp', 'currentHp', 'maxMp', 'currentMp', 'attack', 'armor'
             ),
 
             //Every column part of the primary key
@@ -72,50 +86,13 @@ class Heroes extends \Phalcon\Mvc\Model
 
             //Every column that isn't part of the primary key
             MetaData::MODELS_NON_PRIMARY_KEY => array(
-                'name', 'level', 'raceId', 'classId', 'userId', 'locationId', 'xp'
+                'name', 'level', 'raceId', 'classId', 'userId', 'locationId', 'xp',
+                'maxHp', 'currentHp', 'maxMp', 'currentMp', 'attack', 'armor'
             ),
-
-            //Every column that doesn't allows null values
-//            MetaData::MODELS_NOT_NULL => array(
-//                'id', 'name', 'type', 'year'
-//            ),
-//
-//            //Every column and their data types
-//            MetaData::MODELS_DATA_TYPES => array(
-//                'id' => Column::TYPE_INTEGER,
-//                'name' => Column::TYPE_VARCHAR,
-//                'type' => Column::TYPE_VARCHAR,
-//                'year' => Column::TYPE_INTEGER
-//            ),
-//
-//            //The columns that have numeric data types
-//            MetaData::MODELS_DATA_TYPES_NUMERIC => array(
-//                'id' => true,
-//                'year' => true,
-//            ),
 
             //The identity column, use boolean false if the model doesn't have
             //an identity column
             MetaData::MODELS_IDENTITY_COLUMN => 'heroId',
-
-            //How every column must be bound/casted
-//            MetaData::MODELS_DATA_TYPES_BIND => array(
-//                'id' => Column::BIND_PARAM_INT,
-//                'name' => Column::BIND_PARAM_STR,
-//                'type' => Column::BIND_PARAM_STR,
-//                'year' => Column::BIND_PARAM_INT,
-//            ),
-//
-//            //Fields that must be ignored from INSERT SQL statements
-//            MetaData::MODELS_AUTOMATIC_DEFAULT_INSERT => array(
-//                'year' => true
-//            ),
-//
-//            //Fields that must be ignored from UPDATE SQL statements
-//            MetaData::MODELS_AUTOMATIC_DEFAULT_UPDATE => array(
-//                'year' => true
-//            )
-
         );
     }
 
@@ -242,6 +219,48 @@ class Heroes extends \Phalcon\Mvc\Model
         return $this;
     }
 
+    public function setMaxHp($hp)
+    {
+        $this->maxHp = $hp;
+
+        return $this;
+    }
+
+    public function setCurrentHp($hp)
+    {
+        $this->currentHp = $hp;
+
+        return $this;
+    }
+
+    public function setMaxMp($mp)
+    {
+        $this->maxMp = $mp;
+
+        return $this;
+    }
+
+    public function setCurrentMp($mp)
+    {
+        $this->currentMp = $mp;
+
+        return $this;
+    }
+
+    public function setAttack($attack)
+    {
+        $this->attack = $attack;
+
+        return $this;
+    }
+
+    public function setArmor($armor)
+    {
+        $this->armor = $armor;
+
+        return $this;
+    }
+
     /**
      * Returns the value of field id
      *
@@ -322,6 +341,37 @@ class Heroes extends \Phalcon\Mvc\Model
         return $this->xp;
     }
 
+    public function getMaxHp()
+    {
+        return $this->maxHp;
+    }
+
+    public function getCurrentHp()
+    {
+        return $this->currentHp;
+    }
+
+    public function getMaxMp()
+    {
+        return $this->currentMp;
+    }
+
+    public function getCurrentMp()
+    {
+        return $this->currentMp;
+    }
+
+    public function getAttack()
+    {
+        return $this->attack;
+    }
+
+    public function getArmor()
+    {
+        return $this->armor;
+    }
+
+
     /**
      * Independent Column Mapping.
      */
@@ -335,7 +385,13 @@ class Heroes extends \Phalcon\Mvc\Model
             'classId' => 'classId', 
             'userId' => 'userId', 
             'locationId' => 'locationId',
-            'xp' => 'xp'
+            'xp' => 'xp',
+            'maxHp' => 'maxHp',
+            'currentHp' => 'currentHp',
+            'maxMp' => 'maxMp',
+            'currentMp' => 'currentMp',
+            'attack' => 'attack',
+            'armor' => 'armor',
         );
     }
 
