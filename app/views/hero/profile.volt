@@ -3,102 +3,75 @@
 {% block title %} {% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
-<script>
-    $(function() {
-        $( "#tabs" ).tabs();
-    });
-</script>
-<script>
-    $(function() {
-        $( document ).tooltip({
-            position: {
-                using: function( position, feedback ) {
-                    $( this ).css( position );
-                    $( "<div>" )
-                        .addClass( "arrow" )
-                        .addClass( feedback.vertical )
-                        .addClass( feedback.horizontal )
-                        .appendTo( this );
-                }
-            }
-        });
-    });
-</script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 <style>
-    .ui-tooltip, .arrow:after {
-        background: silver;
-        border: 2px solid white;
+    .ui-progressbar {
+        position: relative;
     }
-    .ui-tooltip {
-        padding: 10px 20px;
-        color: white;
-        border-radius: 20px;
-        font: bold 14px "Helvetica Neue", Sans-Serif;
-        text-transform: uppercase;
-        box-shadow: 0 0 7px black;
-    }
-    .arrow {
-        width: 70px;
-        height: 16px;
-        overflow: hidden;
+    .progress-label {
         position: absolute;
         left: 50%;
-        margin-left: -35px;
-        bottom: -16px;
+        top: 4px;
+        font-weight: bold;
+        text-shadow: 1px 1px 0 #fff;
+        color: silver;
     }
-    .arrow.top {
-        top: -16px;
-        bottom: auto;
+
+    .stats-table {
+        width: 100%;
     }
-    .arrow.left {
-        left: 20%;
-    }
-    .arrow:after {
-        content: "";
-        position: absolute;
-        left: 20px;
-        top: -20px;
-        width: 25px;
-        height: 25px;
-        box-shadow: 6px 5px 9px -9px black;
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        transform: rotate(45deg);
-    }
-    .arrow.top:after {
-        bottom: -20px;
-        top: auto;
-    }
+
+
 </style>
-<p>Раса: {{hero.races[hero.getRaceid()]['name']}}</p>
-<p>Класс: {{hero.classes[hero.getClassid()]['name']}}</p>
 
 
-<div id="tabs">
-    <ul>
-        <li><a href="#tabs-1">Изученные</a></li>
-        <li><a href="#tabs-2">Можно изучить</a></li>
-        <li><a href="#tabs-3">Неизученные</a></li>
-    </ul>
-    <div id="tabs-1">
-        <table>
-            {%for skill in skills%}
-            <tr>
-                <td><a href="#" title="{{skill['description']}}">{{skill['name']}}</a></td>
-            </tr>
-            {%endfor%}
-        </table>
-    </div>
-    <div id="tabs-2">
+<script>
+    /*$(function() {
+        $( "#tabs" ).tabs();
+    });*/
 
-    </div>
-    <div id="tabs-3">
-    </div>
-</div>
+    $(document).ready(function(){
+        $( "#progressbar_hp" ).progressbar({
+            value: 37
+        });
+        $( "#progressbar_mp" ).progressbar({
+            value: 42
+        });
+        $( "#progressbar_xp" ).progressbar({
+            value: 10
+        });
 
+        $( "#progressbar_hp").find( ".ui-progressbar-value" ).css({"background": '#9CFF83'});
+        $( "#progressbar_mp").find( ".ui-progressbar-value" ).css({"background": '#5FE5C6'});
+        $( "#progressbar_xp").find( ".ui-progressbar-value" ).css({"background": '#B2A210'});
+    });
 
+</script>
+
+<table class = "stats-table">
+    <tr>
+        <td><p>Раса:</p></td>
+        <td><p>{{hero.races[hero.getRaceid()]['name']}}</p></td>
+    </tr>
+    <tr>
+        <td><p>Класс:</p></td>
+        <td><p>{{hero.classes[hero.getClassid()]['name']}}</p></td>
+    </tr>
+    <tr>
+        <td><p>HP</p></td>
+        <td><div id="progressbar_hp" ><div class="progress-label" style="width: 100%">37 / 100</div></div></td>
+    </tr>
+    <tr>
+        <td><p>MP</p></td>
+        <td><div id="progressbar_mp"><div class="progress-label">42 / 100</div></div></td>
+    </tr>
+    <tr>
+        <td><p>XP</p></td>
+        <td><div id="progressbar_xp"><div class="progress-label">10 / 100</div></div></td>
+    </tr>
+</table>
 
 {% endblock %}
