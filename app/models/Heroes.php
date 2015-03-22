@@ -353,7 +353,7 @@ class Heroes extends \Phalcon\Mvc\Model
 
     public function getMaxMp()
     {
-        return $this->currentMp;
+        return $this->maxMp;
     }
 
     public function getCurrentMp()

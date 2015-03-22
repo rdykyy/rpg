@@ -43,22 +43,16 @@ class HeroController extends ControllerBase {
 
         $hero = Heroes::findFirst("heroId=$heroId");
         $this->view->setVar("hero", $hero);
-        $skillsModel = new Skills();
-        $skills= $skillsModel->getSkillsByHeroId($heroId);
 
 
-        //foreach ($skills as $skill) {echo 1;}
+        //$skillsModel = new Skills();
+        //$skills= $skillsModel->getSkillsByHeroId($heroId);
 
-          //  die;
-        $this->view->setVar("skills", $skills);
 
-        /*$hero->skills;
-        //$skills = (new Skills())->getSkillsByHeroId($heroId);
         //$this->view->setVar("skills", $skills);
 
-
         //Get the generated profiles from the profiler
-        $profiles = $this->di->get('profiler')->getProfiles();
+        /*$profiles = $this->di->get('profiler')->getProfiles();
 
 
         foreach ($profiles as $profile) {
