@@ -69,32 +69,36 @@ class Heroes extends \Phalcon\Mvc\Model
 
     public $classes;
 
-    public function metaData()
-    {
-        return array(
-
-            //Every column in the mapped table
-            MetaData::MODELS_ATTRIBUTES => array(
-                'heroId', 'name', 'level', 'raceId', 'classId', 'userId', 'locationId', 'xp',
-                'maxHp', 'currentHp', 'maxMp', 'currentMp', 'attack', 'armor'
-            ),
-
-            //Every column part of the primary key
-            MetaData::MODELS_PRIMARY_KEY => array(
-                'heroId'
-            ),
-
-            //Every column that isn't part of the primary key
-            MetaData::MODELS_NON_PRIMARY_KEY => array(
-                'name', 'level', 'raceId', 'classId', 'userId', 'locationId', 'xp',
-                'maxHp', 'currentHp', 'maxMp', 'currentMp', 'attack', 'armor'
-            ),
-
-            //The identity column, use boolean false if the model doesn't have
-            //an identity column
-            MetaData::MODELS_IDENTITY_COLUMN => 'heroId',
-        );
-    }
+//    public function metaData()
+//    {
+//        return array(
+//
+//            //Every column in the mapped table
+//            MetaData::MODELS_ATTRIBUTES => array(
+//                'heroId', 'name', 'level', 'raceId', 'classId', 'userId', 'locationId', 'xp',
+//                'maxHp', 'currentHp', 'maxMp', 'currentMp', 'attack', 'armor'
+//            ),
+//
+//            //Every column part of the primary key
+//            MetaData::MODELS_PRIMARY_KEY => array(
+//                'heroId'
+//            ),
+//
+//            //Every column that isn't part of the primary key
+//            MetaData::MODELS_NON_PRIMARY_KEY => array(
+//                'name', 'level', 'raceId', 'classId', 'userId', 'locationId', 'xp',
+//                'maxHp', 'currentHp', 'maxMp', 'currentMp', 'attack', 'armor'
+//            ),
+//
+//            //The identity column, use boolean false if the model doesn't have
+//            //an identity column
+//            MetaData::MODELS_IDENTITY_COLUMN => 'heroId',
+//
+//            MetaData::MODELS_DATA_TYPES_NUMERIC => array(
+//                'locationId' => true,
+//            )
+//        );
+//    }
 
     public function initialize()
     {
@@ -201,7 +205,7 @@ class Heroes extends \Phalcon\Mvc\Model
      */
     public function setLocationid($locationId)
     {
-        $this->locationId = $locationId;
+        $this->locationId = (int)$locationId;
 
         return $this;
     }

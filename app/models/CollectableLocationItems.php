@@ -1,7 +1,7 @@
 <?php
 use Phalcon\Mvc\Model\MetaData;
 
-class AttackableLocationItems extends \Phalcon\Mvc\Model
+class CollectableLocationItems extends \Phalcon\Mvc\Model
 {
 
     /**
@@ -97,7 +97,7 @@ class AttackableLocationItems extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSource('attackableLocationItems');
+        $this->setSource('collectableLocationItems');
     }
 
     /**

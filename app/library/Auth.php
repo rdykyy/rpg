@@ -67,6 +67,10 @@ class Auth extends Component {
         return $this->session->get('auth-identity')['heroName'];
     }
 
+    public function getLocationId() {
+        return $this->session->get('auth-identity')['locationId'];
+    }
+
 
     public function remove() {
         $this->session->remove('auth-identity');

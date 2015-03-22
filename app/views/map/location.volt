@@ -1,18 +1,23 @@
 {% extends "layouts/main.volt" %}
 
-{% block title %}Выбор героя {% endblock %}
+{% block title %}{{location['name']}} {% endblock %}
 
 {% block content %}
 
 <div class="locationWrapper">
     <div class="left">
-        <h1>{{locationName}}</h1>
+        <h1>{{location['name']}}</h1>
+        {% if !isInCurrentLocation %} <a href="{{url('map/move/' ~ location['locationId'])}}">Перейти</a> {% endif %}
 
         <ul>
-            {% for locItem in locationItemsList %}
+            {% for locItem in locationItemsList['attackable'] %}
             <li>
-                <!--<a href = '/maps/location/{{loc['id']}}'> {{loc['name']}} </a>-->
-                {{locItem['name']}}
+                {{locItem['name']}} {% if isInCurrentLocation %}<a href="#">Атаковать</a> {% endif %}
+            </li>
+            {%endfor%}
+            {% for locItem in locationItemsList['collectable'] %}
+            <li>
+                {{locItem['name']}} {% if isInCurrentLocation %}<a href="#">Собирать</a> {% endif %}
             </li>
             {%endfor%}
         </ul>
@@ -28,7 +33,6 @@
             </ul>
         </div>
     </div>
-
 </div>
 
 {% endblock %}

@@ -1,9 +1,15 @@
 {% extends "layouts/main.volt" %}
 
-{% block title %}Выбор героя {% endblock %}
+{% block title %} {{landName}} {% endblock %}
 
 {% block content %}
 <h1>{{landName}}</h1>
+
+{% if timeToEnd is defined %}
+<div class="in-way">
+    Вы в пути. Время прибития <span class="time">{{timeToEnd}}</span> сек.
+</div>
+{% endif %}
 
 <div class="locations-container">
     {% for loc in locationsList %}
@@ -15,5 +21,23 @@
     </div>
     {%endfor%}
 </div>
+
+<script>
+    $(document).ready(function(){
+        if ($('.in-way').length) {
+            var interval = setInterval(function () {
+                var $time = $('.in-way .time'),
+                    timer = parseInt($time.text());
+                if (timer > 0) {
+                    timer--;
+                    $time.text((timer < 10 ) ? "0" + timer : timer);
+                } else {
+                    clearInterval(interval);
+                    window.location.reload();
+                }
+            }, 1000);
+        }
+    });
+</script>
 
 {% endblock %}

@@ -85,3 +85,8 @@ img.hero-class-icon{
     display: block;
     margin: 0 auto;
 }
+
+.in-way {
+    text-align: center;
+    padding-bottom: 20px;
+}
