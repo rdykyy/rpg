@@ -54,7 +54,9 @@ class Auth extends Component {
         $auth = $this->session->get('auth-identity');
         $auth['heroId'] = $hero->getHeroId();
         $auth['heroName'] = $hero->getName();
+        $loc = Locations::findFirst('locationId='.$hero->getLocationid());
         $auth['locationId'] = $hero->getLocationid();
+        $auth['locationName'] = $loc->getName();
 
         $this->session->set('auth-identity', $auth);
     }

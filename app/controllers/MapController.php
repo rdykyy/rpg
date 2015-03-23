@@ -27,6 +27,7 @@ class MapController extends ControllerBase
 
                 $auth = $this->session->get('auth-identity');
                 $auth['locationId'] = $way['toLocation']['id'];
+                $auth['locationName'] = $way['toLocation']['name'];
                 $this->session->set('auth-identity', $auth);
 
                 $hero->save();
