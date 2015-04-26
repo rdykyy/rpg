@@ -1,5 +1,6 @@
 <?php
-use Phalcon\Mvc\Model\MetaData;
+use Phalcon\Mvc\Model\MetaData,
+    Phalcon\Mvc\Model\Resultset\Simple as ResultSet;
 
 class Heroes extends \Phalcon\Mvc\Model
 {
@@ -63,6 +64,8 @@ class Heroes extends \Phalcon\Mvc\Model
     protected $attack;
 
     protected $armor;
+
+    protected $skillPoints;
 
 
     public $races;
@@ -254,6 +257,13 @@ class Heroes extends \Phalcon\Mvc\Model
         return $this;
     }
 
+    public function setSkillPoints($skillPoints)
+    {
+        $this->skillPoints = $skillPoints;
+
+        return $this;
+    }
+
     /**
      * Returns the value of field id
      *
@@ -364,13 +374,17 @@ class Heroes extends \Phalcon\Mvc\Model
         return $this->armor;
     }
 
+    public function getSkillPoints()
+    {
+        return $this->skillPoints;
+    }
 
     /**
      * Independent Column Mapping.
      */
     public function columnMap()
     {
-        return array(
+        return [
             'heroId' => 'heroId',
             'name' => 'name', 
             'level' => 'level', 
@@ -385,7 +399,32 @@ class Heroes extends \Phalcon\Mvc\Model
             'currentMp' => 'currentMp',
             'attack' => 'attack',
             'armor' => 'armor',
-        );
+            'skillPoints' => 'skillPoints'
+        ];
+    }
+
+    public function getWarriorAttackSkills() {
+        $sql = 'SELECT * FROM warriorAttackSkills where heroId='.$this->heroId;
+        $config = (new Phalcon\Config\Adapter\Php(CONFIG_FOLDER . '/skills/warriorSkillsConfig.php'))->toArray();
+
+        $skills = (new ResultSet (null, $this, $this->getReadConnection()->query($sql)))->toArray();
+
+        $result = [];
+
+        foreach ($skills[0] as $key => $value) {
+            if ($key === 'warriorAttackSkillsId' or $key === 'heroId')
+                continue;
+
+            $arr = explode('_', $key);
+            $skillId = $arr[1];
+            if (isset($config[$skillId])) {
+                $result[$skillId] = $config[$skillId];
+                $result[$skillId]['level'] = $value;
+            }
+        }
+
+        return $result;
+
     }
 
 }

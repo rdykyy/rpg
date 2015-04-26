@@ -1,3 +1,4 @@
 <?php
 
-define('CONFIG_FOLDER', __DIR__ . '../config/');
+define('CONFIG_FOLDER', __DIR__ );
+
