@@ -16,7 +16,6 @@ class Acl extends Component {
                 'map' => ['landMap', 'location'],
                 'authorization' => ['logout'],
                 'game' => ['startGame']
-
             ]
         ];
     }

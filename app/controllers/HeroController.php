@@ -65,13 +65,17 @@ class HeroController extends ControllerBase {
         die;*/
     }
 
-    public function skillsAction($heroId)
+    public function skillsAction($heroId = null)
     {
         if ($heroId == null)
             $heroId = Auth::getInstance()->getHeroId();
 
         $heroName = Auth::getInstance()->getHeroName();//Heroes::findFirst("heroId = '$heroId'");
         $this->view->setVar("heroName", $heroName);
+        $hero = Heroes::findFirst("heroId=".$heroId);
+
+        var_dump($hero->skills->toArray());die;
+
     }
 
 }
