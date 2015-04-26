@@ -70,6 +70,7 @@ class HeroController extends ControllerBase {
         if ($heroId == null)
             $heroId = Auth::getInstance()->getHeroId();
 
+
         $heroName = Auth::getInstance()->getHeroName();//Heroes::findFirst("heroId = '$heroId'");
         $this->view->setVar("heroName", $heroName);
         $hero = Heroes::findFirst("heroId=".$heroId);

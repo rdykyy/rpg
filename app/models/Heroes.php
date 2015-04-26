@@ -100,17 +100,6 @@ class Heroes extends \Phalcon\Mvc\Model
 //        );
 //    }
 
-    public function initialize()
-    {
-        $this->hasManyToMany(
-            "heroesId",
-            "HeroesSkills",
-            "heroId",
-            "skillId",
-            "Skills",
-            "skillId"
-        );
-    }
 
     public function onConstruct()
     {
