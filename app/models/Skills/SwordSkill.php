@@ -1,16 +1,15 @@
 <?php
 
-class SwordSkill extends BaseSkill {
+class SwordSkill {
 
-    private $attackPercent = 2;
+    private static $id = 1;
+    private static $attackPercent = 2;
 
-    public function __construct(){
-        $this->_id = 1;
-        parent::__construct($this->_id);
-    }
-
-    public function getDescription($level) {
-        return sprintf($this->_config['description'], $this->attackPercent * $level);
+    public static function getInfo($level = 0) {
+        $info = (new Phalcon\Config\Adapter\Php(CONFIG_FOLDER . '/skills/skillsConfig.php'))->toArray()[self::$id];
+        $info['level'] = $level;
+        $info['description'] = sprintf($info['description'], self::$attackPercent * $level);
+        return $info;
     }
 
 }

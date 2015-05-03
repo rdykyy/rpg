@@ -75,9 +75,7 @@ class HeroController extends ControllerBase {
         $this->view->setVar("heroName", $heroName);
         $hero = Heroes::findFirst("heroId=".$heroId);
 
-        $this->view->setVar("heroName", $hero->getWarriorAttackSkills());
-        var_dump($hero->getWarriorAttackSkills());die;
-
+        $hero->getAttackSkills();
     }
 
 }

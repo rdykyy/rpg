@@ -403,10 +403,8 @@ class Heroes extends \Phalcon\Mvc\Model
         ];
     }
 
-    public function getWarriorAttackSkills() {
+    public function getAttackSkills() {
         $sql = 'SELECT * FROM warriorAttackSkills where heroId='.$this->heroId;
-        $config = (new Phalcon\Config\Adapter\Php(CONFIG_FOLDER . '/skills/warriorSkillsConfig.php'))->toArray();
-
         $skills = (new ResultSet (null, $this, $this->getReadConnection()->query($sql)))->toArray();
 
         $result = [];
@@ -417,10 +415,13 @@ class Heroes extends \Phalcon\Mvc\Model
 
             $arr = explode('_', $key);
             $skillId = $arr[1];
-            if (isset($config[$skillId])) {
-                $result[$skillId] = $config[$skillId];
-                $result[$skillId]['level'] = $value;
-            }
+
+            var_dump(SkillFactory::getSkillByIdAndLevel($skillId, $value));
+            die;
+//            if (isset($config[$skillId])) {
+//                $result[$skillId] = $config[$skillId];
+//                $result[$skillId]['level'] = $value;
+//            }
         }
 
         return $result;
