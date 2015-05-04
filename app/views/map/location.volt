@@ -12,7 +12,7 @@
         <ul>
             {% for locItem in locationItemsList['attackable'] %}
             <li>
-                {{locItem['name']}} {% if isInCurrentLocation %}<a href="#">Атаковать</a> {% endif %}
+                {{locItem['name']}} {% if isInCurrentLocation %}<a href="{{url('battle/attack/' ~ locItem['locationItemId'])}}">Атаковать</a> {% endif %}
             </li>
             {%endfor%}
             {% for locItem in locationItemsList['collectable'] %}
