@@ -1,5 +1,6 @@
 <?php
-use Phalcon\Mvc\Model\MetaData;
+use Phalcon\Mvc\Model\MetaData,
+    Phalcon\Mvc\Model\Resultset\Simple as ResultSet;;
 
 class AttackableLocationItems extends \Phalcon\Mvc\Model
 {
@@ -112,6 +113,7 @@ class AttackableLocationItems extends \Phalcon\Mvc\Model
         );
     }
 
+
     public function metaData()
     {
         return array(
@@ -129,6 +131,13 @@ class AttackableLocationItems extends \Phalcon\Mvc\Model
 
             MetaData::MODELS_IDENTITY_COLUMN => 'locationItemId',
         );
+    }
+
+    public function getCreepsByLocationItemId($locationItemId) {
+        $sql = "SELECT c.* from creeps c JOIN attackableLocationItemsCreeps lic on lic.attackableLocationItemId = $locationItemId and c.creepId=lic.creepId";
+        $creeps = (new ResultSet (null, $this, $this->getReadConnection()->query($sql)))->toArray();
+
+        return $creeps;
     }
 
 }
