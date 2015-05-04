@@ -1,7 +1,7 @@
 <?php
 
 class SwordSkill extends SkillBase{
-    const id = 1;
+    public static $id = 1;
     const damage = 2;
 
 
