@@ -70,12 +70,22 @@ class HeroController extends ControllerBase {
         if ($heroId == null)
             $heroId = Auth::getInstance()->getHeroId();
 
-
-        $heroName = Auth::getInstance()->getHeroName();//Heroes::findFirst("heroId = '$heroId'");
-        $this->view->setVar("heroName", $heroName);
         $hero = Heroes::findFirst("heroId=".$heroId);
 
-        $hero->getAttackSkills();
+        $this->view->setVar("hero", $hero);
+
+//        var_dump($hero->getSkills('warrior', 'attack'));
+//        die;
+
+        $this->view->setVar("skills", $hero->getSkills('warrior', 'attack'));
+    }
+
+    public function increaseSkillLevelAction() {
+        if ($this->request->get('skillId')) {
+            $hero = Heroes::findFirst("heroId=".Auth::getInstance()->getHeroId());
+            $hero->increaseSkillLevel($this->request->get('skillId'));
+
+        }
     }
 
 }

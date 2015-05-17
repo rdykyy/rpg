@@ -142,3 +142,7 @@ img.hero-class-icon{
 .enemies .teamMembers .member.active {
     box-shadow: 0 0 20px rgba(256,0,0,0.9);
 }
+
+.skillsTable td, .skillsTable th {
+    padding: 10px;
+}

@@ -403,28 +403,46 @@ class Heroes extends \Phalcon\Mvc\Model
         ];
     }
 
-    public function getAttackSkills() {
-        $sql = 'SELECT * FROM warriorAttackSkills where heroId='.$this->heroId;
+    public function getSkills($heroClass, $skillType = 'neutral') {
+        if ($skillType === 'neutral') {
+            $tableName = 'neutralSkills';
+        } else {
+            $tableName = strtolower($heroClass) . ucfirst($skillType) . 'Skills';
+        }
+        $sql = 'SELECT * FROM ' . $tableName . ' where heroId='.$this->heroId;
         $skills = (new ResultSet (null, $this, $this->getReadConnection()->query($sql)))->toArray();
 
         $result = [];
 
         foreach ($skills[0] as $key => $value) {
-            if ($key === 'warriorAttackSkillsId' or $key === 'heroId')
+            if ($key === $tableName . 'Id' or $key === 'heroId')
                 continue;
 
             $arr = explode('_', $key);
             $skillId = $arr[1];
             $result[] = SkillFactory::getSkillByIdAndLevel($skillId, $value);
-
-//            if (isset($config[$skillId])) {
-//                $result[$skillId] = $config[$skillId];
-//                $result[$skillId]['level'] = $value;
-//            }
         }
-        var_dump($result);
-        die;
         return $result;
+    }
+
+    public function getSkillsForBattle() {
+        $sql = 'SELECT * FROM skillsForBattle where heroId='.$this->heroId;
+        $skills = (new ResultSet (null, $this, $this->getReadConnection()->query($sql)))->toArray();
+
+        $result = [];
+
+        foreach ($skills[0] as $key => $value) {
+            if ($key === 'skillsForBattleId' or $key === 'heroId')
+                continue;
+
+            $arr = explode('_', $key);
+            $skillId = $arr[1];
+            $result[] = SkillFactory::getSkillByIdAndLevel($skillId, $value);
+        }
+        return $result;
+    }
+
+    public function increaseSkillLevel($skillId) {
 
     }
 
