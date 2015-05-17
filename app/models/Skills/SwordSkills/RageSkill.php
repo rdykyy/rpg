@@ -1,7 +1,7 @@
 <?php
 
 class RageSkill extends SkillBase{
-    const id = 1;
+    const id = 4;
     const damagePerFallen = 2;
     const maximumDamage = 2;
 

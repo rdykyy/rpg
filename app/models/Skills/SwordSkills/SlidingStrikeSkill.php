@@ -1,7 +1,7 @@
 <?php
 
 class SlidingStrikeSkill extends SkillBase{
-    const id = 1;
+    const id = 5;
     const possibility = 2;
     const damage = 2;
 

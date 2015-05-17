@@ -1,7 +1,7 @@
 <?php
 
 class HonorshipSkill extends SkillBase {
-    const id = 1;
+    const id = 2;
     const additionalArmor = 2;
     const additionalSwordSkillDamage = 2;
 

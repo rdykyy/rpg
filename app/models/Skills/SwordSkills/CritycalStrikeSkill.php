@@ -2,7 +2,7 @@
 
 class CritycalStrikeSkill extends SkillBase
 {
-    const id = 1;
+    const id = 7;
     const critChance = 2;
     const critValue = 2;
 

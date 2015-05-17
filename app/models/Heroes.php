@@ -415,15 +415,15 @@ class Heroes extends \Phalcon\Mvc\Model
 
             $arr = explode('_', $key);
             $skillId = $arr[1];
+            $result[] = SkillFactory::getSkillByIdAndLevel($skillId, $value);
 
-            var_dump(SkillFactory::getSkillByIdAndLevel($skillId, $value));
-            die;
 //            if (isset($config[$skillId])) {
 //                $result[$skillId] = $config[$skillId];
 //                $result[$skillId]['level'] = $value;
 //            }
         }
-
+        var_dump($result);
+        die;
         return $result;
 
     }

@@ -2,12 +2,13 @@
 
 abstract class SkillBase {
 
-    protected abstract static function getParametrizedInfo();
+    //protected abstract function getParametrizedInfo();
 
     public static function getInfo($level = 0) {
-        $info = (new Phalcon\Config\Adapter\Php(CONFIG_FOLDER . '/skills/skillsConfig.php'))->toArray()[self::$id];
+        //var_dump(self::$id);
+        $info = (new Phalcon\Config\Adapter\Php(CONFIG_FOLDER . '/skills/skillsConfig.php'))->toArray()[static::id];
         $info['level'] = $level;
-        $info['description'] = vsprintf($info['description'], self::getParametrizedInfo());
+        $info['description'] = vsprintf($info['description'], static::getParametrizedInfo());
         return $info;
     }
 

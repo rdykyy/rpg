@@ -13,6 +13,7 @@ return new \Phalcon\Config(array(
         'controllersDir' => __DIR__ . '/../../app/controllers/',
         'modelsDir'      => __DIR__ . '/../../app/models/',
         'skillsDir'      => __DIR__ . '/../../app/models/Skills',
+        'swordSkillsDir' => __DIR__ . '/../../app/models/Skills/SwordSkills',
         'viewsDir'       => __DIR__ . '/../../app/views/',
         'pluginsDir'     => __DIR__ . '/../../app/plugins/',
         'libraryDir'     => __DIR__ . '/../../app/library/',
